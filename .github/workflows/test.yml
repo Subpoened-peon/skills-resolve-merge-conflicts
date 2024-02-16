@@ -15,22 +15,5 @@ jobs:
         - name: Checkout code
           uses: actions/checkout@v4
 
-        - name: Check Docker image
-          id: check_image
-          run: |
-              if podman image inspect hooklinesecureimage:01 &> /dev/null; then
-                echo "::set-output name=exists::true"
-              else
-                echo "::set-output name=exists::false"
-              fi
-      
-            # Run tests only if the podman image exists
         - name: Run test.sh
-          if: steps.check_image.outputs.exists == 'true'
-          run: podman run hooklinesecureimage:0.1002 bash -c "./test.sh"
-      
-    dummy:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Job without dependency
-          run: echo "Hello!"
+          run: podman run hooklinesecureimage:0.1 bash -c "./test.sh"
