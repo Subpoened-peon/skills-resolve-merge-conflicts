@@ -27,7 +27,7 @@ jobs:
             # Run tests only if the podman image exists
         - name: Run test.sh
           if: steps.check_image.outputs.exists == 'true'
-          run: podman run hooklinesecureimage:01 bash -c "./test.sh"
+          run: podman run hooklinesecureimage:0.1002 bash -c "./test.sh"
       
     dummy:
       runs-on: ubuntu-latest
