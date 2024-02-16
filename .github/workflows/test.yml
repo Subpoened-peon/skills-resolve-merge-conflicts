@@ -15,5 +15,8 @@ jobs:
         - name: Checkout code
           uses: actions/checkout@v4
 
+        - name: Build podman image
+          run: podman build -t hooklinesecureimage:0.1 .
+
         - name: Run test.sh
           run: podman run hooklinesecureimage:0.1 bash -c "./test.sh"
